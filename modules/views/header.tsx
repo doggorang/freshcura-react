@@ -23,7 +23,7 @@ function Header() {
             href="/"
             sx={{ fontSize: 24 }}
           >
-            {'Freshcure'}
+            {'Frescura'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex' }}>
             <Link

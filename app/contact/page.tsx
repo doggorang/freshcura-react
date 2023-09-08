@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Header from '../../modules/views/header';
-import Footer from '../../modules/views/footer';
+import Header from '../../modules/views/Header';
+import Footer from '../../modules/views/Footer';
 import ProductHero from '../../modules/views/ProductHero';
 import withRoot from '../../modules/withRoot';
 

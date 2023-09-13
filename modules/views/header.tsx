@@ -12,7 +12,7 @@ import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import FloatingButton from '../components/FloatingButton';
 
-const pages = ['Home', 'About', 'Product', 'Contact'];
+const pages = ['Home', 'About', 'Salad', 'Contact'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -104,7 +104,7 @@ function Header() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <Button href={page}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}

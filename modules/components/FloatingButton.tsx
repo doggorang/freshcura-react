@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import IconButton from '@mui/material/IconButton';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AssistantIcon from '@mui/icons-material/Assistant';
 
 let Is_Open = true;
 const FloatingButton = () => {
@@ -17,7 +17,7 @@ const FloatingButton = () => {
     >
       <li className="fab-button">
         <IconButton color="primary" aria-label="Get Assistant">
-          <AddShoppingCartIcon />
+          <AssistantIcon />
         </IconButton>
       </li>
       { IsElementShown ? <ChatAssistant /> : null }

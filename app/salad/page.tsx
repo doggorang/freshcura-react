@@ -7,7 +7,7 @@ function Index() {
   return (
     <React.Fragment>
       <Header />
-      <h1>Product!</h1>
+      <h1>Salad!</h1>
       <Footer />
     </React.Fragment>
   );

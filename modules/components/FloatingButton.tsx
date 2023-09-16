@@ -12,7 +12,7 @@ const FloatingButton = () => {
   };
   return (
     <ul
-      className="fab-container"
+      className="fab-container floatingStyle"
       onClick={mouseClick}
     >
       <li className="fab-button">

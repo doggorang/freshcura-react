@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className="headerStyle">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
@@ -77,7 +77,7 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem href={page} component="a" key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}

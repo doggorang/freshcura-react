@@ -5,15 +5,19 @@ import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 function Copyright() {
   return (
     <React.Fragment>
-      {'© '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Typography sx = {{ color: '#000000' }}>
+        {'© '}
+        <Link color="inherit" href="https://freshcura-react-i2jg0jlsy-doggorang.vercel.app/">
+          Frescura
+        </Link>{' '}
+        {new Date().getFullYear()}
+      </Typography>
     </React.Fragment>
   );
 }
@@ -59,17 +63,11 @@ export default function Footer() {
               sx={{ height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://mui.com/" sx={iconStyle}>
-                  <img
-                    src="/static/themes/onepirate/appFooterFacebook.png"
-                    alt="Facebook"
-                  />
+                <Box component="a" href="https://facebook.com/" sx={iconStyle}>
+                  <FacebookIcon />
                 </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
-                  <img
-                    src="/static/themes/onepirate/appFooterTwitter.png"
-                    alt="Twitter"
-                  />
+                <Box component="a" href="https://twitter.com/" sx={iconStyle}>
+                  <TwitterIcon />
                 </Box>
               </Grid>
               <Grid item>
@@ -111,7 +109,7 @@ export default function Footer() {
             </TextField>
           </Grid>
           <Grid item>
-            <Typography variant="caption">
+            <Typography variant="caption" sx={{ color:'#000000' }}>
               {'Icons made by '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik

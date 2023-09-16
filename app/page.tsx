@@ -3,10 +3,6 @@ import Header from '../modules/views/header';
 import Footer from '../modules/views/footer';
 import ProductHero from '../modules/views/ProductHero';
 import ProductValues from '../modules/views/ProductValues';
-import ProductCategories from '../modules/views/ProductCategories';
-import ProductHowItWorks from '../modules/views/ProductHowItWorks';
-import ProductCTA from '../modules/views/ProductCTA';
-import ProductSmokingHero from '../modules/views/ProductSmokingHero';
 import withRoot from '../modules/withRoot';
 
 function Index() {
@@ -15,10 +11,6 @@ function Index() {
       <Header />
       <ProductHero />
       <ProductValues />
-      <ProductCategories />
-      <ProductHowItWorks />
-      <ProductCTA />
-      <ProductSmokingHero />
       <Footer />
     </React.Fragment>
   );

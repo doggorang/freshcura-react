@@ -31,19 +31,19 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/productValues1.svg"
-                alt="suitcase"
+                src="/dining.png"
+                alt="dining"
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+                Great Dining Experience
               </Typography>
               <Typography variant="h5">
                 {
-                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
+                  'We made our food with love and passion to create great experience'
                 }
                 {
-                  ', go for a mini-vacation just a few subway stops away from your home.'
+                  ', go and taste our special salad to taste greatness.'
                 }
               </Typography>
             </Box>
@@ -52,18 +52,18 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/productValues2.svg"
-                alt="graph"
+                src="/menu.png"
+                alt="menu"
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+                Wide Variety Menu
               </Typography>
               <Typography variant="h5">
                 {
-                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
+                  'Our special salad are crafted with the best quality ingredients, Create your own menu just '
                 }
-                {'your Sundays will not be alike.'}
+                {'the way you like it.'}
               </Typography>
             </Box>
           </Grid>
@@ -71,16 +71,16 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/productValues3.svg"
-                alt="clock"
+                src="/wallet.png"
+                alt="wallet"
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+                Reasonable Price
               </Typography>
               <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
-                {'that you will not find anywhere else.'}
+                {'We use hand picked high quality ingredients to make our salad the best, we make sure the price '}
+                {'is reasonable for the salad we make.'}
               </Typography>
             </Box>
           </Grid>

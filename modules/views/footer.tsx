@@ -13,7 +13,7 @@ function Copyright() {
     <React.Fragment>
       <Typography sx = {{ color: '#000000' }}>
         {'© '}
-        <Link color="inherit" href="https://freshcura-react-i2jg0jlsy-doggorang.vercel.app/">
+        <Link color="inherit" href="https://freshcura-react.vercel.app/">
           Frescura
         </Link>{' '}
         {new Date().getFullYear()}

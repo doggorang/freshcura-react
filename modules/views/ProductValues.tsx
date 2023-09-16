@@ -22,16 +22,16 @@ function ProductValues() {
       <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
         <Box
           component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src="/productCurvyLines.png"
           alt="curvy lines"
           sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
         />
-        <Grid container spacing={5}>
+        <Grid container spacing={5} className='black'>
           <Grid item xs={12} md={4}>
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues1.svg"
+                src="/productValues1.svg"
                 alt="suitcase"
                 sx={{ height: 55 }}
               />
@@ -52,7 +52,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues2.svg"
+                src="/productValues2.svg"
                 alt="graph"
                 sx={{ height: 55 }}
               />
@@ -71,7 +71,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues3.svg"
+                src="/productValues3.svg"
                 alt="clock"
                 sx={{ height: 55 }}
               />

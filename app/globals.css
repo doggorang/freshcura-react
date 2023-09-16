@@ -62,3 +62,15 @@ body {
 .headerStyle {
   background-color: rgb(43, 146, 52);
 }
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+.whiteBackground {
+  background-color: white;
+}

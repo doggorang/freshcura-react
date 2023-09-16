@@ -19,7 +19,7 @@ function ProductSmokingHero() {
           px: 5,
         }}
       >
-        <Typography variant="h4" component="span">
+        <Typography variant="h4" component="span" className='white'>
           Got any questions? Need help?
         </Typography>
       </Button>
@@ -28,7 +28,7 @@ function ProductSmokingHero() {
       </Typography>
       <Box
         component="img"
-        src="/static/themes/onepirate/productBuoy.svg"
+        src="/productBuoy.svg"
         alt="buoy"
         sx={{ width: 60 }}
       />

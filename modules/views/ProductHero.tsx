@@ -3,8 +3,7 @@ import Button from '../components/Button';
 import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 
-const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
+const backgroundImage = '/saladbackground.png';
 
 export default function ProductHero() {
   return (
@@ -22,7 +21,7 @@ export default function ProductHero() {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+        Upgrade your Diet
       </Typography>
       <Typography
         color="inherit"
@@ -30,17 +29,17 @@ export default function ProductHero() {
         variant="h5"
         sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        Enjoy fresh and delicious salad we create with passion.
       </Typography>
       <Button
         color="secondary"
         variant="contained"
         size="large"
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href="/salad"
         sx={{ minWidth: 200 }}
       >
-        Register
+        Salad
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience

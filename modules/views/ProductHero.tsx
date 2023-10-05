@@ -5,7 +5,10 @@ import ProductHeroLayout from './ProductHeroLayout';
 
 const backgroundImage = '/saladbackground.png';
 
-export default function ProductHero() {
+export default function ProductHero({
+    headTitle = 'Upgrade your Diet',
+    bodyTitle = 'Enjoy fresh and delicious salad we create with passion.'
+  }) {
   return (
     <ProductHeroLayout
       sxBackground={{
@@ -21,7 +24,7 @@ export default function ProductHero() {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Diet
+        {headTitle}
       </Typography>
       <Typography
         color="inherit"
@@ -29,7 +32,7 @@ export default function ProductHero() {
         variant="h5"
         sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
-        Enjoy fresh and delicious salad we create with passion.
+        {bodyTitle}
       </Typography>
       <Button
         color="secondary"

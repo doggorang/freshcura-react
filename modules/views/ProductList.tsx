@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import Typography from '../components/Typography';
 import Grid from '@mui/material/Grid';
 import { Modal } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ProductListLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,
@@ -37,14 +38,35 @@ const useHandleClickOpen = () => {
   };
 };
 
-
-const ProductModal = ({ product }: { product: Product }) => {
+const ProductModal = ({ product, handleClose }: { product: Product, handleClose: any }) => {
   return (
-    <Box sx={{ width: 400 }}>
-      <Typography variant="h6">{product.name}</Typography>
-      <Typography variant="body1">{product.price}</Typography>
-      <img src={product.image} alt={product.name} />
-      <Typography variant="body1">{product.description}</Typography>
+    <Box
+      sx={{
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      }}
+      alignItems="center"
+      justifyContent="center"
+      m="auto"
+    >
+      <Box>
+        <Typography variant="h6">{product.name}</Typography>
+        <Button onClick={handleClose}>
+          <CloseIcon />
+        </Button>
+      </Box>
+      <Box>
+        <Typography variant="body1">{product.price}</Typography>
+        <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
+        <Typography variant="body1">{product.description}</Typography>
+      </Box>
     </Box>
   );
 };
@@ -149,7 +171,7 @@ export default function ProductList() {
         open={openBoolean}
         onClose={() => handleClose()}
       >
-        <ProductModal product={selectedProduct!} />
+        <ProductModal product={selectedProduct!} handleClose={handleClose} />
       </Modal>
 
     </ProductListLayoutRoot>

@@ -56,16 +56,20 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
       justifyContent="center"
       m="auto"
     >
-      <Box>
+      <Box display="flex" justifyContent="space-between">
         <Typography variant="h6">{product.name}</Typography>
         <Button onClick={handleClose}>
           <CloseIcon />
         </Button>
       </Box>
-      <Box>
-        <Typography variant="body1">{product.price}</Typography>
-        <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
-        <Typography variant="body1">{product.description}</Typography>
+      <Box display="flex">
+        <Box marginRight={"2%"}>
+          <Typography variant="body1" color="black">{product.price}</Typography>
+          <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
+        </Box>
+        <Box marginLeft={"2%"}>
+          <Typography variant="body1" color="black">description</Typography>
+        </Box>
       </Box>
     </Box>
   );
@@ -150,16 +154,30 @@ export default function ProductList() {
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4}>
             <Box
-              onClick={() => handleProductClick(product)}
+              justifyContent="center"
+              alignItems="center"
+              display="flex"
+              flexDirection="column"
               sx={{
                 padding: 2,
                 borderRadius: 1,
                 boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
               }}
             >
-              <img src={product.image} alt={product.name} />
+              <Box
+                width={"370px"}
+                height={"280px"}
+                sx={{
+                  backgroundImage: `url(${product.image})`,
+                  backgroundSize: 'cover',
+                }}
+              >
+              </Box>
               <Typography variant="h6">{product.name}</Typography>
-              <Typography variant="body1">Rp{product.price}</Typography>
+              <Typography variant="body1" color="black">Rp{product.price}</Typography>
+              <Button onClick={() => handleProductClick(product)}>
+                Detail
+              </Button>
             </Box>
           </Grid>
         ))}

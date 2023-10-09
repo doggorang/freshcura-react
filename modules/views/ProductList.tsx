@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -17,10 +17,9 @@ const ProductListLayoutRoot = styled('section')(({ theme }) => ({
 interface Product {
   id: number;
   name: string;
-  price: number;
   image: string;
-  category: string;
-  description?: string;
+  description: string;
+  reference_benefit?: string;
 }
 
 const useHandleClickOpen = () => {
@@ -64,7 +63,7 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
       </Box>
       <Box display="flex">
         <Box marginRight={"2%"}>
-          <Typography variant="body1" color="black">{product.price}</Typography>
+          <Typography variant="body1" color="black">{product.description}</Typography>
           <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
         </Box>
         <Box marginLeft={"2%"}>
@@ -77,41 +76,46 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
 
 export default function ProductList() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [dataResponse, setDataResponse] = useState([]);
   const { openBoolean, handleClickOpen, handleClose } = useHandleClickOpen();
-
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
     handleClickOpen();
   };
-  //devrecipes.net/modal-component-with-next-js/
+  useEffect(() => {
+    async function getIngredients() {
+      const apiURLEndpoint = `/api/ingredients`;
+      const response = await fetch(apiURLEndpoint);
+      const res = await response.json();
+      setDataResponse(res.results);
+    }
+    getIngredients();
+  }, []);
+
   const products: Product[] = [
     {
       id: 1,
       name: 'LEGO Brand Day!',
-      price: 519000,
       image: 'https://i.imgur.com/YNIchsz.jpeg',
-      category: 'Toys',
+      description: 'Toys',
     },
     {
       id: 2,
       name: 'Huawei Band 8',
-      price: 499000,
       image: 'https://i.imgur.com/gvftwMw.jpeg',
-      category: 'Electronics',
+      description: 'Electronics',
     },
     {
       id: 3,
       name: 'Kiddy Food Maker 7 in 1 Set',
-      price: 48000,
       image: 'https://i.imgur.com/KW21v2P.jpeg',
-      category: 'Home & Kitchen',
+      description: 'Home & Kitchen',
     },
     {
       id: 4,
       name: 'Advan Notebook Laptop Workpro',
-      price: 5099000,
       image: 'https://i.imgur.com/1o3KcN6.png',
-      category: 'Electronics',
+      description: 'Electronics',
     },
   ];
   const categories = ['All', 'Toys', 'Electronics', 'Home & Kitchen'];
@@ -174,8 +178,38 @@ export default function ProductList() {
               >
               </Box>
               <Typography variant="h6">{product.name}</Typography>
-              <Typography variant="body1" color="black">Rp{product.price}</Typography>
+              <Typography variant="body1" color="black">Rp{product.description}</Typography>
               <Button onClick={() => handleProductClick(product)}>
+                Detail
+              </Button>
+            </Box>
+          </Grid>
+        ))}
+        {dataResponse.map((p: Product) => (
+          <Grid item key={p.id} xs={12} sm={6} md={4}>
+            <Box
+              justifyContent="center"
+              alignItems="center"
+              display="flex"
+              flexDirection="column"
+              sx={{
+                padding: 2,
+                borderRadius: 1,
+                boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <Box
+                width={"370px"}
+                height={"280px"}
+                sx={{
+                  backgroundImage: `url(${p.image})`,
+                  backgroundSize: 'cover',
+                }}
+              >
+              </Box>
+              <Typography variant="h6">{p.name}</Typography>
+              <Typography variant="body1" color="black">Rp{p.description}</Typography>
+              <Button onClick={() => handleProductClick(p)}>
                 Detail
               </Button>
             </Box>

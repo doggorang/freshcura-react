@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -82,7 +83,7 @@ export default function ProductList() {
   };
   useEffect(() => {
     async function getIngredients() {
-      const apiURLEndpoint = `http://localhost:3000/api/ingredients`;
+      const apiURLEndpoint = `${window.location.origin}/api/ingredients`;
       const response = await fetch(apiURLEndpoint);
       const res = await response.json();
       setDataResponse(res.results);

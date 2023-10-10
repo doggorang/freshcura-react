@@ -15,10 +15,10 @@ const ProductListLayoutRoot = styled('section')(({ theme }) => ({
 }));
 
 interface Product {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
+  ID: number;
+  NAME: string;
+  IMAGE: string;
+  DESCRIPTION: string;
   reference_benefit?: string;
 }
 
@@ -45,7 +45,6 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -56,18 +55,17 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
       m="auto"
     >
       <Box display="flex" justifyContent="space-between">
-        <Typography variant="h6">{product.name}</Typography>
+        <Typography variant="h6">{product.NAME}</Typography>
         <Button onClick={handleClose}>
           <CloseIcon />
         </Button>
       </Box>
       <Box display="flex">
-        <Box marginRight={"2%"}>
-          <Typography variant="body1" color="black">{product.description}</Typography>
-          <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
+        <Box display="contents" marginRight={"2%"}>
+          <img src={product.IMAGE} alt={product.NAME} width={"370px"} height={"280px"}/>
         </Box>
         <Box marginLeft={"2%"}>
-          <Typography variant="body1" color="black">description</Typography>
+          <Typography variant="body1" color="black">{product.DESCRIPTION}</Typography>
         </Box>
       </Box>
     </Box>
@@ -84,7 +82,7 @@ export default function ProductList() {
   };
   useEffect(() => {
     async function getIngredients() {
-      const apiURLEndpoint = `/api/ingredients`;
+      const apiURLEndpoint = `http://localhost:3000/api/ingredients`;
       const response = await fetch(apiURLEndpoint);
       const res = await response.json();
       setDataResponse(res.results);
@@ -94,28 +92,28 @@ export default function ProductList() {
 
   const products: Product[] = [
     {
-      id: 1,
-      name: 'LEGO Brand Day!',
-      image: 'https://i.imgur.com/YNIchsz.jpeg',
-      description: 'Toys',
+      ID: 1,
+      NAME: 'LEGO Brand Day!',
+      IMAGE: 'https://i.imgur.com/YNIchsz.jpeg',
+      DESCRIPTION: 'Toys',
     },
     {
-      id: 2,
-      name: 'Huawei Band 8',
-      image: 'https://i.imgur.com/gvftwMw.jpeg',
-      description: 'Electronics',
+      ID: 2,
+      NAME: 'Huawei Band 8',
+      IMAGE: 'https://i.imgur.com/gvftwMw.jpeg',
+      DESCRIPTION: 'Electronics',
     },
     {
-      id: 3,
-      name: 'Kiddy Food Maker 7 in 1 Set',
-      image: 'https://i.imgur.com/KW21v2P.jpeg',
-      description: 'Home & Kitchen',
+      ID: 3,
+      NAME: 'Kiddy Food Maker 7 in 1 Set',
+      IMAGE: 'https://i.imgur.com/KW21v2P.jpeg',
+      DESCRIPTION: 'Home & Kitchen',
     },
     {
-      id: 4,
-      name: 'Advan Notebook Laptop Workpro',
-      image: 'https://i.imgur.com/1o3KcN6.png',
-      description: 'Electronics',
+      ID: 4,
+      NAME: 'Advan Notebook Laptop Workpro',
+      IMAGE: 'https://i.imgur.com/1o3KcN6.png',
+      DESCRIPTION: 'Electronics',
     },
   ];
   const categories = ['All', 'Toys', 'Electronics', 'Home & Kitchen'];
@@ -156,7 +154,7 @@ export default function ProductList() {
         m="auto"
       >
         {products.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={4}>
+          <Grid item key={product.ID} xs={12} sm={6} md={4}>
             <Box
               justifyContent="center"
               alignItems="center"
@@ -172,13 +170,13 @@ export default function ProductList() {
                 width={"370px"}
                 height={"280px"}
                 sx={{
-                  backgroundImage: `url(${product.image})`,
+                  backgroundImage: `url(${product.IMAGE})`,
                   backgroundSize: 'cover',
                 }}
               >
               </Box>
-              <Typography variant="h6">{product.name}</Typography>
-              <Typography variant="body1" color="black">Rp{product.description}</Typography>
+              <Typography variant="h6">{product.NAME}</Typography>
+              <Typography variant="body1" color="black">{product.DESCRIPTION}</Typography>
               <Button onClick={() => handleProductClick(product)}>
                 Detail
               </Button>
@@ -186,7 +184,7 @@ export default function ProductList() {
           </Grid>
         ))}
         {dataResponse.map((p: Product) => (
-          <Grid item key={p.id} xs={12} sm={6} md={4}>
+          <Grid item key={p.ID} xs={12} sm={6} md={4}>
             <Box
               justifyContent="center"
               alignItems="center"
@@ -202,13 +200,13 @@ export default function ProductList() {
                 width={"370px"}
                 height={"280px"}
                 sx={{
-                  backgroundImage: `url(${p.image})`,
+                  backgroundImage: `url(${p.IMAGE})`,
                   backgroundSize: 'cover',
                 }}
               >
               </Box>
-              <Typography variant="h6">{p.name}</Typography>
-              <Typography variant="body1" color="black">Rp{p.description}</Typography>
+              <Typography variant="h6">{p.NAME}</Typography>
+              <Typography variant="body1" color="black">Rp{p.DESCRIPTION}</Typography>
               <Button onClick={() => handleProductClick(p)}>
                 Detail
               </Button>

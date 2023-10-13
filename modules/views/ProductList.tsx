@@ -1,5 +1,4 @@
 'use client'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -82,13 +81,13 @@ export default function ProductList() {
     handleClickOpen();
   };
   useEffect(() => {
-    async function getIngredients() {
-      const apiURLEndpoint = `${window.location.origin}/api/ingredients`;
-      const response = await fetch(apiURLEndpoint);
-      const res = await response.json();
-      setDataResponse(res.results);
-    }
-    getIngredients();
+    // async function getIngredients() {
+    //   const apiURLEndpoint = `${window.location.origin}/api/ingredients`;
+    //   const response = await fetch(apiURLEndpoint);
+    //   const res = await response.json();
+    //   setDataResponse(res.results);
+    // }
+    // getIngredients();
   }, []);
 
   const products: Product[] = [
@@ -179,36 +178,6 @@ export default function ProductList() {
               <Typography variant="h6">{product.NAME}</Typography>
               <Typography variant="body1" color="black">{product.DESCRIPTION}</Typography>
               <Button onClick={() => handleProductClick(product)}>
-                Detail
-              </Button>
-            </Box>
-          </Grid>
-        ))}
-        {dataResponse.map((p: Product) => (
-          <Grid item key={p.ID} xs={12} sm={6} md={4}>
-            <Box
-              justifyContent="center"
-              alignItems="center"
-              display="flex"
-              flexDirection="column"
-              sx={{
-                padding: 2,
-                borderRadius: 1,
-                boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
-              }}
-            >
-              <Box
-                width={"370px"}
-                height={"280px"}
-                sx={{
-                  backgroundImage: `url(${p.IMAGE})`,
-                  backgroundSize: 'cover',
-                }}
-              >
-              </Box>
-              <Typography variant="h6">{p.NAME}</Typography>
-              <Typography variant="body1" color="black">Rp{p.DESCRIPTION}</Typography>
-              <Button onClick={() => handleProductClick(p)}>
                 Detail
               </Button>
             </Box>

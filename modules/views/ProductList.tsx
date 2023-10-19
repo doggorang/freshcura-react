@@ -15,11 +15,11 @@ const ProductListLayoutRoot = styled('section')(({ theme }) => ({
 }));
 
 interface Product {
-  ID: number;
-  NAME: string;
-  IMAGE: string;
-  DESCRIPTION: string;
-  reference_benefit?: string;
+  id: number;
+  name: string;
+  image: string;
+  description: string;
+  ref_benefit?: string;
 }
 
 const useHandleClickOpen = () => {
@@ -55,17 +55,17 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
       m="auto"
     >
       <Box display="flex" justifyContent="space-between">
-        <Typography variant="h6">{product.NAME}</Typography>
+        <Typography variant="h6">{product.name}</Typography>
         <Button onClick={handleClose}>
           <CloseIcon />
         </Button>
       </Box>
       <Box display="flex">
         <Box display="contents" marginRight={"2%"}>
-          <img src={product.IMAGE} alt={product.NAME} width={"370px"} height={"280px"}/>
+          <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
         </Box>
         <Box marginLeft={"2%"}>
-          <Typography variant="body1" color="black">{product.DESCRIPTION}</Typography>
+          <Typography variant="body1" color="black">{product.description}</Typography>
         </Box>
       </Box>
     </Box>
@@ -81,41 +81,15 @@ export default function ProductList() {
     handleClickOpen();
   };
   useEffect(() => {
-    // async function getIngredients() {
-    //   const apiURLEndpoint = `${window.location.origin}/api/ingredients`;
-    //   const response = await fetch(apiURLEndpoint);
-    //   const res = await response.json();
-    //   setDataResponse(res.results);
-    // }
-    // getIngredients();
+    async function getIngredients() {
+      const apiURLEndpoint = `https://vcoapi.000webhostapp.com/api/v1/ingredients`;
+      const response = await fetch(apiURLEndpoint);
+      const res = await response.json();
+      setDataResponse(res.data);
+    }
+    getIngredients();
   }, []);
 
-  const products: Product[] = [
-    {
-      ID: 1,
-      NAME: 'LEGO Brand Day!',
-      IMAGE: 'https://i.imgur.com/YNIchsz.jpeg',
-      DESCRIPTION: 'Toys',
-    },
-    {
-      ID: 2,
-      NAME: 'Huawei Band 8',
-      IMAGE: 'https://i.imgur.com/gvftwMw.jpeg',
-      DESCRIPTION: 'Electronics',
-    },
-    {
-      ID: 3,
-      NAME: 'Kiddy Food Maker 7 in 1 Set',
-      IMAGE: 'https://i.imgur.com/KW21v2P.jpeg',
-      DESCRIPTION: 'Home & Kitchen',
-    },
-    {
-      ID: 4,
-      NAME: 'Advan Notebook Laptop Workpro',
-      IMAGE: 'https://i.imgur.com/1o3KcN6.png',
-      DESCRIPTION: 'Electronics',
-    },
-  ];
   const categories = ['All', 'Toys', 'Electronics', 'Home & Kitchen'];
   return (
     <ProductListLayoutRoot
@@ -153,8 +127,8 @@ export default function ProductList() {
         spacing={2}
         m="auto"
       >
-        {products.map((product) => (
-          <Grid item key={product.ID} xs={12} sm={6} md={4}>
+        {dataResponse.map((product: Product) => (
+          <Grid item key={product.id} xs={12} sm={6} md={4}>
             <Box
               justifyContent="center"
               alignItems="center"
@@ -170,13 +144,13 @@ export default function ProductList() {
                 width={"370px"}
                 height={"280px"}
                 sx={{
-                  backgroundImage: `url(${product.IMAGE})`,
+                  backgroundImage: `url(${product.image})`,
                   backgroundSize: 'cover',
                 }}
               >
               </Box>
-              <Typography variant="h6">{product.NAME}</Typography>
-              <Typography variant="body1" color="black">{product.DESCRIPTION}</Typography>
+              <Typography variant="h6">{product.name}</Typography>
+              <Typography variant="body1" color="black">{product.description}</Typography>
               <Button onClick={() => handleProductClick(product)}>
                 Detail
               </Button>

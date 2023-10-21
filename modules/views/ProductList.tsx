@@ -1,13 +1,16 @@
 'use client'
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import Grid from '@mui/material/Grid';
 import { Modal } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
 import CloseIcon from '@mui/icons-material/Close';
 
 const ProductListLayoutRoot = styled('section')(({ theme }) => ({
@@ -37,9 +40,14 @@ const useHandleClickOpen = () => {
   };
 };
 
-const ProductModal = ({ product, handleClose }: { product: Product, handleClose: any }) => {
+type ModalProps = {
+  product: Product,
+  handleClose: any
+};
+const ProductModal = forwardRef<HTMLDivElement, ModalProps>(({ product, handleClose }, ref) => {
   return (
     <Box
+      ref={ref}
       sx={{
         position: 'absolute' as 'absolute',
         top: '50%',
@@ -54,27 +62,43 @@ const ProductModal = ({ product, handleClose }: { product: Product, handleClose:
       justifyContent="center"
       m="auto"
     >
-      <Box display="flex" justifyContent="space-between">
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        spacing={2}
+      >
         <Typography variant="h6">{product.name}</Typography>
         <Button onClick={handleClose}>
           <CloseIcon />
         </Button>
-      </Box>
-      <Box display="flex">
-        <Box display="contents" marginRight={"2%"}>
-          <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
-        </Box>
-        <Box marginLeft={"2%"}>
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="flex-start"
+        spacing={2}
+      >
+        <img src={product.image} alt={product.name} width={"370px"} height={"280px"}/>
+        <Stack
+          direction="column"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          spacing={2}
+        >
           <Typography variant="body1" color="black">{product.description}</Typography>
-        </Box>
-      </Box>
+          
+          <Link href={product.ref_benefit}>Journal Reference</Link>
+        </Stack>
+      </Stack>
     </Box>
   );
-};
+});
 
 export default function ProductList() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [dataResponse, setDataResponse] = useState([]);
+  const [page, setPage] = useState(1);
   const { openBoolean, handleClickOpen, handleClose } = useHandleClickOpen();
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -82,13 +106,14 @@ export default function ProductList() {
   };
   useEffect(() => {
     async function getIngredients() {
-      const apiURLEndpoint = `https://vcoapi.000webhostapp.com/api/v1/ingredients`;
+      const limit = 3;
+      const apiURLEndpoint = `https://vcoapi.000webhostapp.com/api/v1/ingredients?limit=${limit}&offset=${(page - 1) * limit}`;
       const response = await fetch(apiURLEndpoint);
       const res = await response.json();
       setDataResponse(res.data);
-    }
+    };
     getIngredients();
-  }, []);
+  }, [page]);
 
   const categories = ['All', 'Toys', 'Electronics', 'Home & Kitchen'];
   return (
@@ -157,6 +182,25 @@ export default function ProductList() {
             </Box>
           </Grid>
         ))}
+      </Grid>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        justifyContent="center"
+        m="auto"
+      >
+        <Pagination count={3}
+          size="large"
+          showFirstButton
+          showLastButton
+          variant="outlined"
+          shape="rounded"
+          page={page}
+          onChange={(event, page) => {
+            setPage(page);
+          }}
+        />
       </Grid>
 
       <Modal

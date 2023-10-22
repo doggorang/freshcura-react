@@ -16,18 +16,16 @@ const pages = ['Home', 'About', 'Salad', 'Contact'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   return (
     <div>
-      <AppBar position="fixed" className="headerStyle">
+      <AppBar>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
